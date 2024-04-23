@@ -5,6 +5,7 @@ package cd_math_go
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 /*
@@ -139,4 +140,27 @@ func Convert_to_0_360_DEG(longitude float64) float64 {
 		return longitude - float64(coeff*360)
 	}
 
+}
+
+// prec controls the number of digits (excluding the exponent)
+//
+//	prec of -1 uses the smallest number of digits
+func TruncFloat(f float64, prec int) float64 {
+	floatBits := 64
+
+	if math.IsNaN(f) || math.IsInf(f, 1) || math.IsInf(f, -1) {
+		fmt.Println("error in TruncFloat")
+		return 0
+	}
+
+	fTruncStr := strconv.FormatFloat(f, 'f', prec+1, floatBits)
+	fTruncStr = fTruncStr[:len(fTruncStr)-1]
+	fTrunc, err := strconv.ParseFloat(fTruncStr, floatBits)
+	if err != nil {
+		fmt.Println("error in TruncFloat")
+		return 0
+
+	}
+
+	return fTrunc
 }
