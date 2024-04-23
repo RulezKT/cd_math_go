@@ -8,26 +8,6 @@ import (
 	"strconv"
 )
 
-/*
-//округляет до 9 цифр после запятой
-    public static double round_To_9 (double in_Number) {
-
-        return (double) Math.round(in_Number * 1_000_000_000.0) / 1_000_000_000.0;
-
-    }
-
-    //округляет до places цифр после запятой
-    //просто обрезает не округляя ни вверх ни вниз
-    public static double round_To(double in_Number, int places) {
-
-        double scale = Math.pow(10, places);
-
-        return (double) (long)(in_Number * scale) / scale;
-
-    }
-
-*/
-
 //https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#atan2-double-double-
 //https://www.geeksforgeeks.org/java-lang-math-atan2-java/
 //https://en.wikipedia.org/wiki/Atan2
@@ -75,6 +55,7 @@ func Atn2RAD(y float64, x float64) float64 {
 }
 
 // на сегодня самая корректная
+// cartToPolar 1 time
 func Atn2RADWith360Check(y float64, x float64) float64 {
 
 	phi := Atn2RAD(y, x)
@@ -90,6 +71,7 @@ func Atn2RADWith360Check(y float64, x float64) float64 {
 	return phi
 }
 
+// cartToPolar 1 time
 func Atn2RADWith90Check(y float64, x float64) float64 {
 	theta := Atn2RAD(y, x)
 
